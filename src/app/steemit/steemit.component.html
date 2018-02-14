@@ -1,0 +1,61 @@
+<div *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<div *ngIf="!loading">
+
+<div class="detalleUser">
+  <div class="barrita">
+     <!-- <i class="material-icons arrowss backbutton" (click)="this.feedService.toggleAlterno(); nuevoa();">arrow_back</i> -->
+     <div class="encabezado fuente">Steemit</div>
+   </div>
+    <!-- <div class="mascaraUsuario"> -->
+    <div class="backDetail"></div>
+      <div class="infoUser2">
+        <!-- <div class="steemPost" *ngFor="let steemit of steemits"> -->
+  <div class="contPost">
+      <div class="steemPost" *ngFor="let steemit of steemits" >
+        <div class="imgPost"></div>
+        <a class="steemText fuente" href="{{steemit.link}}" target="_blank">{{steemit.title}}</a>
+      </div>
+</div>
+        <!-- <mat-expansion-panel {{steemit.pic}} [expanded]="step === 1" *ngFor="let faq of faqs" > -->
+
+          <!-- <mat-accordion>
+
+            <mat-expansion-panel *ngFor="let steemit of steemits" >
+
+              <mat-expansion-panel-header>
+                <mat-panel-title class="contItemsu">
+                  {{steemit.title}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+          <div class="contItemsu">
+            <div class="itemUser2">{{steemit.pic}}</div>
+          </div>
+
+            </mat-expansion-panel>
+
+          </mat-accordion> -->
+
+      </div>
+
+      <div class="faqGuia">
+        <div class="guia">
+            <div class="textoCont">
+                <p class="texto fuente">¿Primera vez en dinero con opciones? <a class="links">¡Inicia aquí!</a> </p>
+            </div>
+            <div class="textoCont">
+                <p class="texto2 fuente" (click)="this.feedService.toggleAlterno();">FAQ - PREGUNTAS FRECUENTES<i class="material-icons">arrow_forward</i> </p>
+            </div>
+
+            <div class="">
+
+            </div>
+        </div>
+      </div>
+
+
+</div>
+</div>

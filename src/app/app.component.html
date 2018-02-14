@@ -1,0 +1,21 @@
+
+<mat-toolbar class="degradado">
+  <mat-toolbar-row >
+    <div class="contMenu">
+
+      <img src="../assets/logotipo.png" height="40" [routerLink]="['/']" (click)="this.feedService.escondeScroll(true);">
+        <i class="material-icons iconIde" >account_circle</i>
+
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <div id="globalContent">
+
+</div> -->
+
+<div class="contenidoPP" >
+
+<router-outlet></router-outlet>
+
+</div>

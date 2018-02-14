@@ -1,0 +1,45 @@
+<div *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<div *ngIf="!loading">
+
+<div class="detalleUser pooldet" id="detalleUser">
+  <div class="barrita">
+     <i class="material-icons arrowss backbutton" (click)="this.feedService.toggleAlterno(); nuevoa();">arrow_back</i>
+     <div class="encabezado fuente">Preguntas Frecuentes</div>
+   </div>
+    <!-- <div class="mascaraUsuario"> -->
+    <div class="backDetail"></div>
+      <div class="infoUser">
+
+          <mat-accordion>
+
+            <!-- <mat-expansion-panel  [expanded]="step === 1" *ngFor="let faq of faqs" > -->
+            <mat-expansion-panel *ngFor="let faq of faqs" >
+
+              <mat-expansion-panel-header>
+                <mat-panel-title class="contItemsu">
+                  {{faq.title}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+          <!-- //contenido panel de expansióna -->
+          <div class="contItemsu">
+            <div class="itemUser2">{{faq.answer}}</div>
+          </div>
+
+
+
+            </mat-expansion-panel>
+
+          </mat-accordion>
+
+
+
+      </div>
+
+
+
+</div>
+</div>

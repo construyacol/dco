@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.fuente{
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  margin:0 !important;
+}
+
+.degradado{
+  height: 50px !important;
+  background: rgba(66,87,100,1);
+background: -moz-linear-gradient(-45deg, rgba(66,87,100,1) 0%, rgba(34,45,51,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(66,87,100,1)), color-stop(100%, rgba(34,45,51,1)));
+background: -webkit-linear-gradient(-45deg, rgba(66,87,100,1) 0%, rgba(34,45,51,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(66,87,100,1) 0%, rgba(34,45,51,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(66,87,100,1) 0%, rgba(34,45,51,1) 100%);
+background: linear-gradient(135deg, rgba(66,87,100,1) 0%, rgba(34,45,51,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#425764', endColorstr='#222d33', GradientType=1 );
+}
+.abrirSubAlterno{
+  transform: translateX(0px) !important;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+}
+.mat-tab-labels{
+background: white !important;
+}
+app-detail2{
+  padding-top: 55px;
+  width: 100%;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color:#9938B3 !important;
+}
+mat-toolbar-row, mat-toolbar, .mat-toolbar-multiple-rows{
+  /*height: 55px !important;*/
+  min-height: 55px !important;
+  color: white;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+}
+
+body{
+  /*height: calc(100% - 55px) !important;*/
+  height: 100%;
+  overflow-x:hidden;
+  overflow-y:hidden;
+}
+html{
+  height: 100% !important;
+  background: #F2F4F8;
+}
+
+app-feed{
+  height: 100%;
+    width: 100%;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 55px !important;
+}
+.mat-toolbar{
+  position: fixed;
+  transition: .3s;
+}

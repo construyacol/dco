@@ -1,0 +1,265 @@
+<div class="conteFormu">
+
+<div class="conteNews">
+  <div class="news">
+
+    <div class="actuali fuente" *ngIf="project.news.length>0">
+      <i class="material-icons iconn" >error_outline</i><p>Novedades del proyecto</p>
+    </div>
+
+    <div class="newsFeed">
+
+          <mat-accordion *ngIf="project.news.length>0">
+
+            <mat-expansion-panel *ngFor="let new of project.news" class="itemMat" >
+
+              <mat-expansion-panel-header>
+                <mat-panel-title class="contItemsu">
+                  {{new.title}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+          <div class="contItemsu">
+            <div class="itemUser2">{{new.description}}</div>
+          </div>
+
+            </mat-expansion-panel>
+
+          </mat-accordion>
+          <p *ngIf="project.news.length === 0" class="fuente text">No hay noticias</p>
+
+    </div>
+
+  </div>
+  <div class="video">
+    <app-news [project]="project"></app-news>
+  </div>
+
+</div>
+
+  <div class="madre" id="Madre">
+
+  <div class="menuSec" id="menuSec">
+    <div class="info fuente">
+          <p>Información Ico</p>
+          <div class="derInfo infoDes">
+            <div class="subscribe fuente">
+                <p>Suscribirme</p>
+            </div>
+
+          </div>
+          <div class="izqInfo infoDes">
+            <div class="subscribe fuente" [routerLink]="['/']" (click)="this.feedService.escondeScroll(true);">
+                <i class="material-icons">keyboard_arrow_left</i><p>Volver</p>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <div class="modeloProyecto conteFormulario">
+    <div class="fechaCreated fuente">Este proyecto fue publicado por el equipo de dinero con opciones en {{project.createdAt | amLocale:'es' | amDateFormat:'MMMM D - YYYY, h:mm a'}}</div>
+    <div class="infoPrincipal">
+      <div class="prueba p2">
+        <div class="titulo fuente">
+          <h3 class="stitulo">{{project.nombreCoin}}</h3><p class="stitulo2">({{project.simbolCoin}})</p>
+        </div>
+        <div class="links fuente">
+          <div class="itemLink" ><i class="material-icons" >link</i> <a href="{{project.webSite}}" target="_blank" class="leftI" >Website</a></div>
+          <div class="itemLink" ><i class="material-icons" >bookmark_border</i> <a href="{{project.whitePaper}}" target="_blank" class="leftI" >White paper</a></div>
+          <div class="itemLink" ><img src="../../assets/exchange.png" width="20" height="20" class="imgE"> <a href="{{project.exchange}}" target="_blank" class="leftI2">Exchange</a><i class="material-icons">error_outline</i></div>
+        </div>
+        <div class="CMlikes">
+          <div class="conteLikes">
+            <div class="likeDislike">
+              <div class="like fuente">
+                <i class="material-icons">thumb_up</i>
+                <p class="likeText">{{project.likes}}</p>
+              </div>
+              <div class="dislike fuente">
+                <i class="material-icons">thumb_down</i>
+                <p class="dislikeText">{{project.dislikes}}</p>
+              </div>
+            </div>
+            <div class="progresLikes"></div>
+          </div>
+        </div>
+      </div>
+      <div class="prueba">
+        <div class="titulo2  fuente">
+          <div class="coinPrice">
+            <div class="coinAd"><h3>${{project.precioUsd}}</h3><p>USD</p> </div>
+            <div class="coinEth"><p>{{project.precioEth}}</p><p> ETH</p> </div>
+          </div>
+          <div class="socials">
+              <img src='../../assets/social/bitcoin.png' width="25" height="25" class="logoSocial">
+              <img src='../../assets/social/discord.png' width="25" height="25" class="logoSocial">
+              <img src='../../assets/social/facebook.png' width="25"height="25"  class="logoSocial">
+              <img src='../../assets/social/reddit.png' width="25"  height="25"  class="logoSocial">
+              <img src='../../assets/social/telegram.png' width="25"height="25"  class="logoSocial">
+              <img src='../../assets/social/twitter.png' width="25" height="25" class="logoSocial">
+              <img src='../../assets/social/youtube.png' width="25" height="25" class="logoSocial">
+          </div>
+        </div>
+
+        <div class="links dataCoin">
+          <mat-divider></mat-divider>
+
+          <div class="contDataCoin">
+             <div class="infoCoin fuente negrita">Hard Cap</div>
+             <div class="infoCoin fuente negrita">Total Suppy</div>
+             <div class="infoCoin fuente negrita">Tokens Bloq</div>
+          </div>
+          <mat-divider></mat-divider>
+
+         <div class="contDataCoin2">
+           <div class="infoCoin fuente ol">{{project.hardCap}}</div>
+           <div class="infoCoin fuente ol">{{project.totalSupply}}</div>
+           <div class="infoCoin fuente ol">{{project.tokenBloqMes}}</div>
+         </div>
+        </div>
+        <div class="CMlikes">
+          <div class="cprogreso">
+						<div class="contfinal">
+							<i class="material-icons cardColorElement">timer</i>
+							<span class="meta">{{project.dateStart | amLocale:'es' |  amLocal |  amDateFormat:'MMMM D'}}</span>
+						</div>
+
+						<div class="contprogreso">
+							<div class="live fuente">
+								en vivo
+						  </div>
+
+							<div class="progreso">
+								<div class="progresado"></div>
+							</div>
+
+							<div class="tasa cardColorElement" title="50 Millones (17 k Dolares)" uk-tooltip="pos: bottom">
+								15 Días /<span class="alcanzado">30</span>
+							</div>
+
+						</div>
+						<div class="contfinal">
+							<i class="material-icons cardColorElement">timer_off</i>
+							<span class="meta">{{project.dateEnd | amLocale:'es' | amDateFormat:'MMMM D'}}</span>
+						</div>
+					 </div>
+
+        </div>
+      </div>
+    </div>
+
+  <div class="contenidoDesc fuente">
+    <h4 class="titleDesc">Descripción</h4>
+    <p>{{project.description}}</p>
+
+    <h4 class="titleDesc" *ngIf="project.team != ''">Sobre el equipo</h4>
+    <p>{{project.team}}</p>
+
+    <h4 class="titleDesc" *ngIf="project.product != ''">Avance del producto</h4>
+    <p>{{project.product}}</p>
+
+    <h4 class="titleDesc" *ngIf="project.partner != ''">Socios y apoyo</h4>
+    <p>{{project.partner}}</p>
+  </div>
+
+  </div>
+
+
+
+  <div class="panelFix fuente panelBack" id="panelFix">
+      <div class="barritaPanel">
+          <p class="dataInvest ">DATOS INVERSIÓN</p>
+      </div>
+      <div class="panelData">
+        <div class="contract">
+          <p>Contrato:</p>
+          <p class="contracText">{{project.contractAdress}}</p>
+        </div>
+        <div class="conteDats">
+            <div class="bonos">
+              <p class="aporte ">BONO</p>
+              <p class="cifra apo2">{{project.bono}}</p>
+            </div>
+            <div class="purchase">
+              <div class="min"><p class="aporte">APORTE MIN</p> <p class="cifra">{{project.aporteMin}}</p></div>
+              <div class="max"><p class="aporte">APORTE MAX</p> <p class="cifra">{{project.aporteMax}}</p></div>
+            </div>
+        </div>
+        <div class="ctaCont" [routerLink]="['/detail']" (click)="this.feedService.escondeScroll(false);">
+          <div class="ctA fuente" >INVERTIR</div>
+        </div>
+        <!-- <p>Hay pool? {{project.pool}}</p> -->
+        <div class="calcular">
+          <p class="titleCalc"> calcular inversión </p>
+          <div class="calculadora">
+               <div class="contEth">
+                 <div class="placeH">ETH</div>
+               <input matInput placeholder="Ether Mount" value="1" class="mountEt" onchange="cambio(this.value)" #box>
+               </div>
+
+               <div class="result">
+                 <p class="resulSymbol">{{project.simbolCoin}}</p>
+                 <!-- <p class="resulSymbol">{{cantidadTokens}}</p> -->
+                <p class="resulSymbol">{{box.value*cantidadTokens}}</p>
+               </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="project.pool == true" class="fiz2 fuente panelBack" id="panelFix">
+          <div class="barritaPanel">
+              <img src="../../assets/poool.png" width="35" height="24.3" class="poolPic" >
+              <p class="dataInvest">PISCINA ABIERTA</p>
+          </div>
+          <div class="panelData datP ">
+            <div class="contract faqPool">
+              <p>Termina en:</p>
+              <p class="contracText countDown">00: 00: 00</p>
+              <div class="poolGuide">
+                <p class="firstPool">¿Primera vez? aprende a </p><p>invertir en piscinas</p><i class="material-icons">arrow_forward</i>
+              </div>
+              <p (click)="this.feedService.toggleAlterno();" class="faqbutton">FAQ PISCINAS</p>
+            </div>
+            <div class="conteDats cD2">
+                <div class="bonos">
+                  <p class="aporte ">BONO</p>
+                  <p class="cifra apo2">{{project.bono}}</p>
+                </div>
+                <div class="purchase">
+                  <div class="min"><p class="aporte">APORTE MIN</p> <p class="cifra">{{project.aporteMin}}</p></div>
+                  <div class="max"><p class="aporte">APORTE MAX</p> <p class="cifra">{{project.aporteMax}}</p></div>
+                </div>
+            </div>
+
+            <!-- <p>Hay pool? {{project.pool}}</p> -->
+            <div class="calcular">
+              <p class="titleCalc"> calcular inversión </p>
+              <div class="calculadora">
+                   <div class="contEth">
+                     <div class="placeH">ETH</div>
+                   <input matInput placeholder="Ether Mount" value="1" class="mountEt" onchange="cambio(this.value)" #box>
+                   </div>
+
+                   <div class="result">
+                     <p class="resulSymbol">{{project.simbolCoin}}</p>
+                     <!-- <p class="resulSymbol">{{cantidadTokens}}</p> -->
+                    <p class="resulSymbol">{{box.value*cantidadTokens}}</p>
+                   </div>
+              </div>
+            </div>
+            <!-- <div class="faqPool"></div> -->
+            <div class="ctaCont" [routerLink]="['/detail']" (click)="this.feedService.escondeScroll(false);">
+              <div class="ctA fuente" >Contribuir ETH</div>
+            </div>
+          </div>
+      </div>
+
+      <div class="subAlterno">
+        <!-- <app-user-form  [loading]="loading"></app-user-form> -->
+        <app-detail [faqP]="faqP"></app-detail>
+
+      </div>
+  </div>
+</div>
+
+</div>

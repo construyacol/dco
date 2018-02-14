@@ -1,0 +1,24 @@
+<div class="outleet">
+
+  <div class="example-container mat-elevation-z8">
+  <div class="example-header">
+      <div *ngIf="this.addU == 0" class="nuevoUser" (click)="this.userService.toggleDetail(null, segundoValor('editar')); detalleUser(null); toggleAdd(+1)"  ><i class="material-icons per">person_add</i> Agregar Usuario</div>
+      <div *ngIf="this.addU == 1" class="nuevoUser" (click)="this.userService.toggleDetail('cerrar'); detalleUser(null); toggleAdd(-1)"  ><i class="material-icons per">person_add</i> Agregar Usuario</div>
+      <i class="material-icons">&#xE8B6;</i>
+  </div>
+</div>
+
+<div class="alterno">
+
+  <div class="alternoP">
+    <!-- <app-user-detail [aUser]="aUser"></app-user-detail> -->
+  </div>
+
+  <div class="subAlterno">
+    <!-- <app-user-form [aUser]="aUser"></app-user-form> -->
+  </div>
+
+</div>
+
+
+</div>
