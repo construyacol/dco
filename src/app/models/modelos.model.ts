@@ -34,6 +34,7 @@ export class Social{
 		){}
 }
 
+
 //Modelo Info Moneda
 export class Coin{
 	constructor(
@@ -41,7 +42,7 @@ export class Coin{
 		public simbol?: string,
 		public priceUsd?: string,
 		public priceEth?: string,
-		public mountPerEth?: string,
+		public mountPerEth?: number,
 		public hardCap?: string,
 		public totalSupply?: string,
 		public tokenBloq?: string,
@@ -55,6 +56,30 @@ export class User{
 	constructor(
     public likes?: number,
 		public dislikes?: number
+		){}
+}
+
+//Modelo subscriptor
+export class Subscriptor{
+	constructor(
+    public email?: string,
+		public user?: User
+		){}
+}
+
+//Modelo redes sociales
+export class SocialNetwork{
+	constructor(
+    public redName?: string,
+		public link?: string
+		){}
+}
+
+//Modelo contenido multimedia (videos youtube proyecto)
+export class Multimedia{
+	constructor(
+    public description?: string,
+		public link?: string
 		){}
 }
 

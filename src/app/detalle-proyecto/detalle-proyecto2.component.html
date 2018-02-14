@@ -1,17 +1,9 @@
 <div class="conteFormu">
 {{project2.title}}<br>
-{{project2.type}}<br>
-{{project2.createdAt}}<br>
+<!-- {{project2.type}}<br> -->
 <br><br>
 
-{{project2.coin.name}}<br>
-{{project2.coin.simbol}}<br>
-{{project2.coin.priceUsd}}<br>
-{{project2.coin.priceEth}}<br>
 {{project2.coin.mountPerEth}}<br>
-{{project2.coin.hardCap}}<br>
-{{project2.coin.totalSupply}}<br>
-{{project2.coin.tokenBloq}}<br>
 {{project2.coin.bloqMessage}}<br><br>
 
 {{project2.social.likes}}<br>
@@ -40,5 +32,29 @@
 {{project2.contractAdress}}<br>
 
 
+
+</div>
+
+
+<div class="newsFeed">
+
+      <mat-accordion *ngIf="project.news.length>0">
+
+        <mat-expansion-panel *ngFor="let new of project.news" class="itemMat" >
+
+          <mat-expansion-panel-header>
+            <mat-panel-title class="contItemsu">
+              {{new.title}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+      <div class="contItemsu">
+        <div class="itemUser2">{{new.description}}</div>
+      </div>
+
+        </mat-expansion-panel>
+
+      </mat-accordion>
+      <p *ngIf="project.news.length === 0" class="fuente text">No hay noticias</p>
 
 </div>

@@ -41,7 +41,7 @@
 
   <div class="menuSec" id="menuSec">
     <div class="info fuente">
-          <p>Información Ico</p>
+          <p>Información {{project.type}}</p>
           <div class="derInfo infoDes">
             <div class="subscribe fuente">
                 <p>Suscribirme</p>
@@ -61,7 +61,7 @@
     <div class="infoPrincipal">
       <div class="prueba p2">
         <div class="titulo fuente">
-          <h3 class="stitulo">{{project.nombreCoin}}</h3><p class="stitulo2">({{project.simbolCoin}})</p>
+          <h3 class="stitulo">{{project.coin.name}}</h3><p class="stitulo2">({{project.coin.simbol}})</p>
         </div>
         <div class="links fuente">
           <div class="itemLink" ><i class="material-icons" >link</i> <a href="{{project.webSite}}" target="_blank" class="leftI" >Website</a></div>
@@ -73,11 +73,11 @@
             <div class="likeDislike">
               <div class="like fuente">
                 <i class="material-icons">thumb_up</i>
-                <p class="likeText">{{project.likes}}</p>
+                <p class="likeText">{{project.social.likes}}</p>
               </div>
               <div class="dislike fuente">
                 <i class="material-icons">thumb_down</i>
-                <p class="dislikeText">{{project.dislikes}}</p>
+                <p class="dislikeText">{{project.social.dislikes}}</p>
               </div>
             </div>
             <div class="progresLikes"></div>
@@ -87,17 +87,13 @@
       <div class="prueba">
         <div class="titulo2  fuente">
           <div class="coinPrice">
-            <div class="coinAd"><h3>${{project.precioUsd}}</h3><p>USD</p> </div>
-            <div class="coinEth"><p>{{project.precioEth}}</p><p> ETH</p> </div>
+            <div class="coinAd"><h3>${{project.coin.priceUsd}}</h3><p>USD</p> </div>
+            <div class="coinEth"><p>{{project.coin.priceEth}}</p><p> ETH</p> </div>
           </div>
           <div class="socials">
-              <img src='../../assets/social/bitcoin.png' width="25" height="25" class="logoSocial">
-              <img src='../../assets/social/discord.png' width="25" height="25" class="logoSocial">
-              <img src='../../assets/social/facebook.png' width="25"height="25"  class="logoSocial">
-              <img src='../../assets/social/reddit.png' width="25"  height="25"  class="logoSocial">
-              <img src='../../assets/social/telegram.png' width="25"height="25"  class="logoSocial">
-              <img src='../../assets/social/twitter.png' width="25" height="25" class="logoSocial">
-              <img src='../../assets/social/youtube.png' width="25" height="25" class="logoSocial">
+            <a *ngFor="let social of project.socialNetwork" href="{{social.link}}" target="_blank">
+              <img src='../../assets/social/{{social.redName}}.png' width="25" height="25" class="logoSocial">
+            </a>
           </div>
         </div>
 
@@ -112,9 +108,9 @@
           <mat-divider></mat-divider>
 
          <div class="contDataCoin2">
-           <div class="infoCoin fuente ol">{{project.hardCap}}</div>
-           <div class="infoCoin fuente ol">{{project.totalSupply}}</div>
-           <div class="infoCoin fuente ol">{{project.tokenBloqMes}}</div>
+           <div class="infoCoin fuente ol">{{project.coin.hardCap}}</div>
+           <div class="infoCoin fuente ol">{{project.coin.totalSupply}}</div>
+           <div class="infoCoin fuente ol">{{project.coin.tokenBloq}}</div>
          </div>
         </div>
         <div class="CMlikes">
@@ -198,15 +194,15 @@
                </div>
 
                <div class="result">
-                 <p class="resulSymbol">{{project.simbolCoin}}</p>
+                 <p class="resulSymbol">{{project.coin.simbol}}</p>
                  <!-- <p class="resulSymbol">{{cantidadTokens}}</p> -->
-                <p class="resulSymbol">{{box.value*cantidadTokens}}</p>
+                <p class="resulSymbol">{{box.value*project.coin.mountPerEth}}</p>
                </div>
           </div>
         </div>
       </div>
 
-      <div *ngIf="project.pool == true" class="fiz2 fuente panelBack" id="panelFix">
+      <div *ngIf="project.pool.avaible == true" class="fiz2 fuente panelBack" id="panelFix">
           <div class="barritaPanel">
               <img src="../../assets/poool.png" width="35" height="24.3" class="poolPic" >
               <p class="dataInvest">PISCINA ABIERTA</p>

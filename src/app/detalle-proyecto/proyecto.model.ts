@@ -1,8 +1,9 @@
-import { Update, Pool, Social, Coin, Exchange } from "../models/modelos.model";
+import { Update, Pool, Social, Coin, Exchange,
+Subscriptor, SocialNetwork, Multimedia } from "../models/modelos.model";
 
 
 
-export class Project2{
+export class Project{
 
 	constructor(
 		public _id:number,
@@ -14,6 +15,9 @@ export class Project2{
 		public social?:Social,
 		public exchange?:Exchange[],
 		public news?:Update[],
+		public subscriptor?:Subscriptor[],
+		public socialNetwork?:SocialNetwork[],
+		public multimedia?:Multimedia[],
 
 		public bono?: string,
 		public aporteMax?: string,
@@ -32,7 +36,7 @@ export class Project2{
 	){}
 }
 
-export class Project{
+export class Project2{
   // coinDatas: CoinData[];
   // reactions: Reaction[];
   // dates: Date[];

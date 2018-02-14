@@ -1,7 +1,16 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
 import { Project, Project2 } from './proyecto.model';
 import { NgForm } from '@angular/forms';
-import { Update, Social, Coin, Pool, Exchange } from '../models/modelos.model';
+import { Update,
+         Social,
+         Coin,
+         Pool,
+         Exchange,
+         Subscriptor,
+         User,
+        SocialNetwork,
+        Multimedia} from '../models/modelos.model';
+
 import { Steemit } from '../steemit/steemit.model';
 import FeedService from '../feed/feed.service';
 
@@ -19,7 +28,7 @@ declare var $:any;
 
  @Component({
    selector: "app-detail2",
-   templateUrl:"./detalle-proyecto2.component.html",
+   templateUrl:"./detalle-proyecto.component.html",
    styleUrls:["./detalle-proyecto.component.css"],
  	 providers: [FeedService]
  })
@@ -40,6 +49,7 @@ export class DetailsComponent implements OnInit {
 
 
 
+
 reaction: Social = new Social(
   1000,
   20
@@ -47,10 +57,10 @@ reaction: Social = new Social(
 
 coinData: Coin = new Coin(
   'nombre moneda',
-  'simbolo moneda',
+  'BNTCH',
   'PrecioUsd',
   'PrecioEth',
-  'Monto por Eth',
+  9000,
   'Hard Cap',
   'Total Supply',
   'Token Bloq',
@@ -67,8 +77,24 @@ pool: Pool = new Pool(
 );
 
 
+multimedia:Multimedia[] =[
+  new Multimedia ('Descripción video', 'https://www.youtube.com'),
+  new Multimedia ('Descripción video', 'https://www.youtube.com'),
+];
+
+socialNet:SocialNetwork[] =[
+  new SocialNetwork ('bitcoin', 'https://www.bitcointalk.com'),
+  new SocialNetwork ('reddit', 'https://www.reddit.com'),
+];
+
+subscriptor:Subscriptor[] =[
+  new Subscriptor ('andres@gmail.com'),
+  new Subscriptor ('andres@gmail.com')
+];
+
 exc:Exchange[] =[
-  new Exchange ('Nombre Exchange', 'link')
+  new Exchange ('Nombre Exchange', 'link'),
+  new Exchange ('Nombre Exchange2', 'link'),
 ];
 
 news:Update[] =[
@@ -80,18 +106,21 @@ news:Update[] =[
  )
 ];
 
-project2: Project2 = new Project2(
+project: Project = new Project(
   2231,
   'Titulo',
   'ico',
   new Date,
-  this.pool, 
+  this.pool,
   this.coinData,
   this.reaction,
   this.exc,
   this.news,
+  this.subscriptor,
+  this.socialNet,
+  this.multimedia,
 
-  '30% Bono',
+  '30%',
   '10 eth',
   '1 eth',
   'www.websiteProyecto.com',
@@ -109,7 +138,7 @@ faqP:string = 'pool';
 
 
 
-project: Project = new Project(
+project2: Project2 = new Project2(
     '3556',
     'BoonTech',
     new Date,
@@ -151,14 +180,13 @@ project: Project = new Project(
 
 // projects:Project[] = new Array(10).fill(this.project); //users es un array del modelo User
 
-cantidadTokens:string = this.project.mountPerEther;
+// cantidadTokens:string = this.project.mountPerEther;
 
 advertenciaPool:string = 'NO PUBLIQUE LA DIRECCIÓN DE LA PISCINA EN NINGUN CANAL FUERA DE NUESTRO CANAL, NO HAGA PERDEMOS UN NEGOCIO POR UNA FUGA DE INFO PRIVADO, TODOS LOS NEGOCIOS DE PISCINAS SON PRIVADA CON LA EMPRESA Y SE FIRMA UN CONTRATO DE NO DIVULGACIÓN, SI LO ROMPEMOS PERDEMOS EL NEGOCIO Y SI ENCONTRAMOS QUIEN LO HIZO SERA BANEADO DE POR VIDA';
 
 
 
   ngOnInit(){
-    console.log(this.exc);
     $('body').css('overflow-y','visible');
     console.log(this.project);
     // $('#botonMenu1').css('color','rgb(0, 252, 108)');
