@@ -7,9 +7,15 @@ import { Update,
          Pool,
          Exchange,
          Subscriptor,
-         User,
         SocialNetwork,
-        Multimedia} from '../models/modelos.model';
+        Multimedia,
+        User,
+        Membership,
+        UserLike,
+        UserDisLike,
+        Subscription,
+
+      } from '../models/modelos.model';
 
 import { Steemit } from '../steemit/steemit.model';
 import FeedService from '../feed/feed.service';
@@ -48,7 +54,7 @@ export class DetailsComponent implements OnInit {
 
 
 
-
+//Ejemplo Modelo Proyecto---------------------------------------------------------------
 
 reaction: Social = new Social(
   1000,
@@ -69,6 +75,7 @@ coinData: Coin = new Coin(
 
 pool: Pool = new Pool(
   true,
+  'mensaje de alerta',
   1,
   4,
   new Date,
@@ -93,8 +100,8 @@ subscriptor:Subscriptor[] =[
 ];
 
 exc:Exchange[] =[
-  new Exchange ('Nombre Exchange', 'link'),
-  new Exchange ('Nombre Exchange2', 'link'),
+  new Exchange ('Binance', 'link'),
+  new Exchange ('EtherDelta', 'link'),
 ];
 
 news:Update[] =[
@@ -133,6 +140,53 @@ project: Project = new Project(
   'Socios',
   'Dirección Contrato Ether'
 );
+
+
+
+//Ejemplo Modelo usuario---------------------------------------------------------------
+
+
+
+
+
+
+subscrip:Subscription[] =[
+  new Subscription (241235, this.coinData.name),
+  new Subscription (341263, this.coinData.name),
+];
+
+likeProjects: UserLike[] = [
+  new UserLike (241235, this.coinData.name),
+  new UserLike (341263, this.coinData.name),
+];
+
+dislikeProjects: UserDisLike[] = [
+  new UserDisLike (241235134235, this.coinData.name),
+  new UserDisLike (341234423563, this.coinData.name),
+];
+
+membership: Membership = new Membership(
+  new Date,
+  new Date
+);
+
+usuario: User = new User(
+  2231254,
+  'Andreas Araveug',
+  this.subscrip,
+  this.likeProjects,
+  this.dislikeProjects,
+  true,
+  this.membership
+
+
+);
+
+
+
+
+
+
 
 faqP:string = 'pool';
 
@@ -189,6 +243,7 @@ advertenciaPool:string = 'NO PUBLIQUE LA DIRECCIÓN DE LA PISCINA EN NINGUN CANA
   ngOnInit(){
     $('body').css('overflow-y','visible');
     console.log(this.project);
+    console.log(this.usuario);
     // $('#botonMenu1').css('color','rgb(0, 252, 108)');
     $(window).on("scroll",function(){
     if($(window).scrollTop()>398){

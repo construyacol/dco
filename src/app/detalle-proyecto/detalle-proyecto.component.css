@@ -149,6 +149,9 @@ margin-left: 5px;
 }
 .faqbutton{
   cursor: pointer;
+  display: flex;
+align-items: center;
+justify-content: center;
 }
 .pooldet{
   top: 0 !important;
@@ -352,14 +355,16 @@ flex-direction: column;
   display: flex;
 }
 
-.contDataCoin2{
+.mat-menu-panel {
 
+    margin-left: 70px !important;
 }
 
 .itemLink{
   width: 100%;
   display: flex;
       margin-bottom: 5px;
+      cursor: pointer;
 }
 .imgE{
   margin-right: 5px;

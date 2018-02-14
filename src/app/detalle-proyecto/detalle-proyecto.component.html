@@ -66,7 +66,25 @@
         <div class="links fuente">
           <div class="itemLink" ><i class="material-icons" >link</i> <a href="{{project.webSite}}" target="_blank" class="leftI" >Website</a></div>
           <div class="itemLink" ><i class="material-icons" >bookmark_border</i> <a href="{{project.whitePaper}}" target="_blank" class="leftI" >White paper</a></div>
-          <div class="itemLink" ><img src="../../assets/exchange.png" width="20" height="20" class="imgE"> <a href="{{project.exchange}}" target="_blank" class="leftI2">Exchange</a><i class="material-icons">error_outline</i></div>
+
+<mat-menu #menu="matMenu" >
+
+  <div *ngIf="project.exchange.length>0">
+  <button mat-menu-item *ngFor="let ex of project.exchange">
+    <mat-icon>rotate_90_degrees_ccw</mat-icon>
+    <a>{{ex.name}}</a>
+  </button>
+</div>
+
+<div *ngIf="project.exchange.length===0">
+<button mat-menu-item >
+  <mat-icon>error</mat-icon>
+  <a>No hay exchanges Aún</a>
+</button>
+</div>
+
+</mat-menu>
+          <div class="itemLink"><img src="../../assets/exchange.png" width="20" height="20" class="imgE"> <a target="_blank" class="leftI2"  [matMenuTriggerFor]="menu">Exchange</a><i class="material-icons">error_outline</i></div>
         </div>
         <div class="CMlikes">
           <div class="conteLikes">
@@ -190,7 +208,7 @@
           <div class="calculadora">
                <div class="contEth">
                  <div class="placeH">ETH</div>
-               <input matInput placeholder="Ether Mount" value="1" class="mountEt" onchange="cambio(this.value)" #box>
+               <input matInput placeholder="Ether Mount" value="1" class="mountEt"  #box>
                </div>
 
                <div class="result">
@@ -214,7 +232,7 @@
               <div class="poolGuide">
                 <p class="firstPool">¿Primera vez? aprende a </p><p>invertir en piscinas</p><i class="material-icons">arrow_forward</i>
               </div>
-              <p (click)="this.feedService.toggleAlterno();" class="faqbutton">FAQ PISCINAS</p>
+              <p (click)="this.feedService.toggleAlterno();" class="faqbutton">FAQ PISCINAS - <mat-icon>error_outline</mat-icon></p>
             </div>
             <div class="conteDats cD2">
                 <div class="bonos">
@@ -233,13 +251,13 @@
               <div class="calculadora">
                    <div class="contEth">
                      <div class="placeH">ETH</div>
-                   <input matInput placeholder="Ether Mount" value="1" class="mountEt" onchange="cambio(this.value)" #box>
+                   <input matInput placeholder="Ether Mount" value="1" class="mountEt"  #box>
                    </div>
 
                    <div class="result">
                      <p class="resulSymbol">{{project.simbolCoin}}</p>
                      <!-- <p class="resulSymbol">{{cantidadTokens}}</p> -->
-                    <p class="resulSymbol">{{box.value*cantidadTokens}}</p>
+                    <p class="resulSymbol">{{box.value*project.coin.mountPerEth}}</p>
                    </div>
               </div>
             </div>
