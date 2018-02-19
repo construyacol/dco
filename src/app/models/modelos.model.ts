@@ -93,9 +93,10 @@ export class User{
 	constructor(
 		public _id: number,
 		public name?: string,
+		public userType?: string,
 		public subscriptions?: Subscription[],
-		public likeProjects?: UserLike[],
-		public disLikeProjects?: UserDisLike[],
+		public likeProjects?: number[],
+		public disLikeProjects?: number[],
     public avaible?: boolean, //condicional para habilitar o inhabilitar usuario en plataforma
 		public membership?: Membership,
 
@@ -111,19 +112,19 @@ export class Membership{
 
 
 
-export class UserLike{
-	constructor(
-		public id_project: number,
-		public nameCoin: string,
-		){}
-}
-
-export class UserDisLike{
-	constructor(
-		public id_project: number,
-		public nameCoin: string,
-		){}
-}
+// export class UserLike{
+// 	constructor(
+// 		public id_project: number,
+// 		public nameCoin: string,
+// 		){}
+// }
+//
+// export class UserDisLike{
+// 	constructor(
+// 		public id_project: number,
+// 		public nameCoin: string,
+// 		){}
+// }
 
 export class Subscription{
 	constructor(

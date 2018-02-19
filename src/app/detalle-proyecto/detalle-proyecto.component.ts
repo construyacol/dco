@@ -11,8 +11,6 @@ import { Update,
         Multimedia,
         User,
         Membership,
-        UserLike,
-        UserDisLike,
         Subscription,
 
       } from '../models/modelos.model';
@@ -42,35 +40,74 @@ declare var $:any;
 export class DetailsComponent implements OnInit {
   constructor(private feedService: FeedService){}
 
-
-// new: Update = new Update(
-//   'Noticia Nueva',
-//   'Descripción'
-// );
-
-// food:Update = new Update[
-//   {"titulo", "descripcion"}
+// modal:any = [
+//   {title:'Titulo', description:'descripcion'},
+//   {title:'Titulo', description:'descripcion'}
 // ];
 
+liked:any = '';
+disLiked:any = '';
+likes:boolean;
+disLikes:boolean;
+barLikes:number;
+barLikesProgress:number;
+status:string ='actives';
+mostrar:string = '';
 
+toggleModalHover(mensaje){
+
+// alert(mensaje);
+this.mostrar = mensaje;
+
+  // if(this.status === 'active'){
+  //   return  this.status = 'INactive';
+  // }
+  return this.status = 'active';
+}
+
+cerrar(){
+  return  this.status = 'INactive';
+}
+
+Msg:any = [
+  {title:'ADVERTENCIA',
+description:'Esta información es confidencial de cada uno de los proyectos ICO, es ilegal mencionar los Exchange donde harán lanzamiento, esto puede conllevar a un cierre del proyecto por parte de la SEC (Securities and Exchange Commission), un proyecto sólido jamás dirá el Exchange en el que se comercializará, por lo menos en fase ICO..',
+clase:'Exch',
+},
+
+  {title:'ADVERTENCIA',
+  description:'1. No hablamos sobre nuestras piscinas con nadie que no esté relacionado con este grupo.',
+  regla2:'No nos contacte con ofertas que haya adquirido. Solo Francis @TheKinGeek (El Francis)  y @Mr.Killer  contacta directamente con los equipos de ICO, Si nos enteramos que están hablando en nombre de DCO sin previa autorización, al menos que el los haya autorizado.',
+  regla3:'3. NO PUBLIQUE LA DIRECCIÓN DE LA PISCINA EN NINGUN CANAL FUERA DE NUESTRO CANAL, NO HAGA PERDEMOS UN NEGOCIO POR UNA FUGA DE INFO PRIVADO, TODOS LOS NEGOCIOS DE PISCINAS SON PRIVADA CON LA EMPRESA Y SE FIRMA UN CONTRATO DE NO DIVULGACIÓN, SI LO ROMPEMOS PERDEMOS EL NEGOCIO Y SI ENCONTRAMOS QUIEN LO HIZO SERA BANEADO DE POR VIDA.',
+  clase:'Warning',
+  }
+];
+
+
+modals:any = [
+  {title:'ADVERTENCIA', description:'descripcion'},
+  {title:'modal2', description:'descripcion'},
+];
+
+data='22';
 
 //Ejemplo Modelo Proyecto---------------------------------------------------------------
 
 reaction: Social = new Social(
-  1000,
-  20
+  100,
+  40
 );
 
 coinData: Coin = new Coin(
-  'nombre moneda',
+  'BOON TECH',
   'BNTCH',
-  'PrecioUsd',
-  'PrecioEth',
-  9000,
-  'Hard Cap',
-  'Total Supply',
-  'Token Bloq',
-  'Bloq Message'
+  '0,04', //PrecioUsd
+  '0000001234',//PrecioEth
+  9000, //MounthPerEth
+  '10.000.000',  //Hard Cap USD
+  '80.000.000',   //Total Supply
+  '50.000.000',   //Token Bloq
+  'Estos tokens estaran bloqueados por x cantidad de tiempo'    //Token Bloq
 );
 
 pool: Pool = new Pool(
@@ -100,8 +137,8 @@ subscriptor:Subscriptor[] =[
 ];
 
 exc:Exchange[] =[
-  new Exchange ('Binance', 'link'),
-  new Exchange ('EtherDelta', 'link'),
+  // new Exchange ('Binance', 'link'),
+  // new Exchange ('EtherDelta', 'link'),
 ];
 
 news:Update[] =[
@@ -128,8 +165,8 @@ project: Project = new Project(
   this.multimedia,
 
   '30%',
-  '10 eth',
-  '1 eth',
+  '10',
+  '1',
   'www.websiteProyecto.com',
   'www.LinkWhitePaper.com',
   new Date,
@@ -155,14 +192,13 @@ subscrip:Subscription[] =[
   new Subscription (341263, this.coinData.name),
 ];
 
-likeProjects: UserLike[] = [
-  new UserLike (241235, this.coinData.name),
-  new UserLike (341263, this.coinData.name),
+likeProjects: number[] = [
+  23312,
+  55323,
 ];
 
-dislikeProjects: UserDisLike[] = [
-  new UserDisLike (241235134235, this.coinData.name),
-  new UserDisLike (341234423563, this.coinData.name),
+dislikeProjects: number[] = [
+  21377,
 ];
 
 membership: Membership = new Membership(
@@ -173,6 +209,7 @@ membership: Membership = new Membership(
 usuario: User = new User(
   2231254,
   'Andreas Araveug',
+  'vip',
   this.subscrip,
   this.likeProjects,
   this.dislikeProjects,
@@ -237,11 +274,105 @@ project2: Project2 = new Project2(
 // cantidadTokens:string = this.project.mountPerEther;
 
 advertenciaPool:string = 'NO PUBLIQUE LA DIRECCIÓN DE LA PISCINA EN NINGUN CANAL FUERA DE NUESTRO CANAL, NO HAGA PERDEMOS UN NEGOCIO POR UNA FUGA DE INFO PRIVADO, TODOS LOS NEGOCIOS DE PISCINAS SON PRIVADA CON LA EMPRESA Y SE FIRMA UN CONTRATO DE NO DIVULGACIÓN, SI LO ROMPEMOS PERDEMOS EL NEGOCIO Y SI ENCONTRAMOS QUIEN LO HIZO SERA BANEADO DE POR VIDA';
+index:any;
 
+likeProject(){//validamos si el usuario ya ha hecho like a este proyecto...
+ return  this.liked = this.usuario.likeProjects.find(proyecto => proyecto === this.project._id);
+}
+disLikeProject(){//validamos si el usuario ya ha hecho disLike a este proyecto...
+return  this.disLiked = this.usuario.disLikeProjects.find(proyecto => proyecto === this.project._id);
+}
+
+quitarLike(){
+  this.index = this.usuario.likeProjects.indexOf(this.project._id);
+  this.usuario.likeProjects.splice(this.index,1)
+  this.project.social.likes-=1;
+  this.upLikeBar();
+
+  return this.likes=false;
+}
+
+sumarLike(){
+  this.project.social.likes+=1;
+  this.usuario.likeProjects.push(this.project._id);
+  this.upLikeBar();
+
+  return this.likes=true;
+};
+
+sumarDisLike(){
+  this.project.social.dislikes+=1;
+  this.usuario.disLikeProjects.push(this.project._id);
+  this.upLikeBar();
+
+  return this.disLikes=true;
+
+};
+
+
+quitardisLike(){
+  this.index = this.usuario.disLikeProjects.indexOf(this.project._id);
+  this.usuario.disLikeProjects.splice(this.index,1)
+  this.project.social.dislikes-=1;
+  this.upLikeBar();
+
+  return this.disLikes=false;
+};
+
+upLikeBar(){
+  //sacamos porcentaje equivalente al fill de la barra de likes
+  this.barLikes = this.project.social.likes + this.project.social.dislikes;
+  console.log(`Total reactions ${this.barLikes}`);
+  this.barLikesProgress = Math.round((this.project.social.likes*100)/this.barLikes);
+  // Math.round(this.barLikesProgress) //redondear a entero el resultado
+  console.log(`Barra de progreso en ${this.barLikesProgress}%`);
+  $('.progresados').css('width',`${this.barLikesProgress}%`);
+};
+
+like(){
+  // console.log(this.findProject());
+  console.log(this.likes);
+  console.log(this.usuario);
+
+  if(!this.likes){//si el proyecto NO tiene like, entonces SUMELE 1 like
+    if(this.disLikes){
+      this.quitardisLike();
+    }
+    return this.sumarLike();
+}
+// si el proyecto si tiene like, entonces restele 1 like
+return this.quitarLike();
+}
+
+disLike(){
+  if(!this.disLikes){//si el proyecto NO tiene disLike, entonces SUMELE 1 Dislike
+    if(this.likes){
+      this.quitarLike();
+    }
+  return this.sumarDisLike();
+  }// si el proyecto si tiene disLike, entonces restele 1 like
+return this.quitardisLike();
+}
 
 
   ngOnInit(){
+
+    //validamos si el usuario ya le ha dado like al proyectos
+    this.upLikeBar();
+    if(this.likeProject()){//si el proyecto tiene like
+      this.likes=true;
+      this.disLikes=false;
+    }if(this.disLikeProject()){
+      this.likes=false;
+      this.disLikes=true;
+    }else{
+      this.likes=false;
+      console.log(this.likes);
+    };
+
     $('body').css('overflow-y','visible');
+
+    console.log(this.modals);
     console.log(this.project);
     console.log(this.usuario);
     // $('#botonMenu1').css('color','rgb(0, 252, 108)');

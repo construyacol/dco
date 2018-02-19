@@ -18,6 +18,9 @@ import { steemitComponent } from './steemit/steemit-component';
 import { ListComponent } from './publicaciones/lista-component';
 import { DetailsComponent } from './detalle-proyecto/detalle-proyecto.component';
 import { NewsComponent } from './admin/news/news-proyecto.component';
+import { ModalComponent } from './popUp/modal.component';
+import { ModalHoverComponent } from './popupHover/modalH.component';
+
 
 // import { proofComponent } from './prueba/proof-component';
 
@@ -31,7 +34,9 @@ import { Routing } from './app.routing';
     steemitComponent,
     ListComponent,
     DetailsComponent,
-    NewsComponent
+    NewsComponent,
+    ModalComponent,
+    ModalHoverComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<div class="conteFormu">
+<div class="conteFormu" (click)="cerrar()">
 
 <div class="conteNews">
   <div class="news">
@@ -41,7 +41,7 @@
 
   <div class="menuSec" id="menuSec">
     <div class="info fuente">
-          <p>Información {{project.type}}</p>
+          <p (click)="this.feedService.mostrarModal();">Información {{project.type}}</p>
           <div class="derInfo infoDes">
             <div class="subscribe fuente">
                 <p>Suscribirme</p>
@@ -77,36 +77,59 @@
 </div>
 
 <div *ngIf="project.exchange.length===0">
-<button mat-menu-item >
+<!-- <button mat-menu-item >
   <mat-icon>error</mat-icon>
   <a>No hay exchanges Aún</a>
-</button>
+</button> -->
 </div>
 
 </mat-menu>
-          <div class="itemLink"><img src="../../assets/exchange.png" width="20" height="20" class="imgE"> <a target="_blank" class="leftI2"  [matMenuTriggerFor]="menu">Exchange</a><i class="material-icons">error_outline</i></div>
+
+          <div class="itemLink">
+            <app-modalh *ngIf="mostrar == 'noExc'" [status]="status" [token]="Msg[0]"></app-modalh>
+
+            <img src="../../assets/exchange.png" width="20" height="20" class="imgE">
+
+             <a target="_blank" class="leftI2" *ngIf="project.exchange.length>0"   [matMenuTriggerFor]="menu">
+               Exchange
+             </a>
+
+             <a target="_blank" class="leftI2 noEx" *ngIf="project.exchange.length==0" >
+               Exchange
+             </a>
+
+             <i class="material-icons noEx" *ngIf="project.exchange.length===0" (mouseenter)="toggleModalHover('noExc')" >
+               error_outline
+             </i>
+           </div>
         </div>
         <div class="CMlikes">
           <div class="conteLikes">
             <div class="likeDislike">
               <div class="like fuente">
-                <i class="material-icons">thumb_up</i>
+                <i (click)="like()" class="material-icons LIKE" [ngStyle]="{color: (likes==true) ? '#444444' : '#8f8f8f' }">thumb_up</i>
                 <p class="likeText">{{project.social.likes}}</p>
               </div>
               <div class="dislike fuente">
-                <i class="material-icons">thumb_down</i>
+                <i (click)="disLike()" class="material-icons disLIKE" [ngStyle]="{color: (disLikes==true) ? '#444444' : '#8f8f8f' }">thumb_down</i>
+                <!-- <i class="material-icons disLIKE">thumb_down</i> -->
                 <p class="dislikeText">{{project.social.dislikes}}</p>
               </div>
             </div>
-            <div class="progresLikes"></div>
+            <div class="progresLikes">
+              <div class="progresados" style="width:`${barLikesProgress}`%;"></div>
+            </div>
           </div>
         </div>
       </div>
       <div class="prueba">
         <div class="titulo2  fuente">
           <div class="coinPrice">
-            <div class="coinAd"><h3>${{project.coin.priceUsd}}</h3><p>USD</p> </div>
-            <div class="coinEth"><p>{{project.coin.priceEth}}</p><p> ETH</p> </div>
+            <div class="coinAd">
+
+
+              <h3>${{project.coin.priceUsd}}</h3><p>USD<mat-icon id="Mod"  matTooltip="Precio de adquisición" >error_outline</mat-icon></p> </div>
+            <div class="coinEth"><p>{{project.coin.priceEth}}</p><p> ETH </p> </div>
           </div>
           <div class="socials">
             <a *ngFor="let social of project.socialNetwork" href="{{social.link}}" target="_blank">
@@ -162,6 +185,8 @@
       </div>
     </div>
 
+
+
   <div class="contenidoDesc fuente">
     <h4 class="titleDesc">Descripción</h4>
     <p>{{project.description}}</p>
@@ -195,8 +220,8 @@
               <p class="cifra apo2">{{project.bono}}</p>
             </div>
             <div class="purchase">
-              <div class="min"><p class="aporte">APORTE MIN</p> <p class="cifra">{{project.aporteMin}}</p></div>
-              <div class="max"><p class="aporte">APORTE MAX</p> <p class="cifra">{{project.aporteMax}}</p></div>
+              <div class="min"><p class="aporte">APORTE MIN</p> <p class="cifra">{{project.aporteMin}} Eth</p></div>
+              <div class="max"><p class="aporte">APORTE MAX</p> <p class="cifra">{{project.aporteMax}} Eth</p></div>
             </div>
         </div>
         <div class="ctaCont" [routerLink]="['/detail']" (click)="this.feedService.escondeScroll(false);">
@@ -232,7 +257,12 @@
               <div class="poolGuide">
                 <p class="firstPool">¿Primera vez? aprende a </p><p>invertir en piscinas</p><i class="material-icons">arrow_forward</i>
               </div>
-              <p (click)="this.feedService.toggleAlterno();" class="faqbutton">FAQ PISCINAS - <mat-icon>error_outline</mat-icon></p>
+              <p (click)="this.feedService.toggleAlterno();" class="faqbutton">Preguntas Frecuentes </p>
+              <div class="warningPool" >
+
+                <app-modalh *ngIf="mostrar == 'warning'" [status]="status" [token]="Msg[1]"></app-modalh>
+
+                 <mat-icon (mouseenter)="toggleModalHover('warning')" >error_outline</mat-icon></div>
             </div>
             <div class="conteDats cD2">
                 <div class="bonos">
@@ -240,8 +270,8 @@
                   <p class="cifra apo2">{{project.bono}}</p>
                 </div>
                 <div class="purchase">
-                  <div class="min"><p class="aporte">APORTE MIN</p> <p class="cifra">{{project.aporteMin}}</p></div>
-                  <div class="max"><p class="aporte">APORTE MAX</p> <p class="cifra">{{project.aporteMax}}</p></div>
+                  <div class="min"><p class="aporte">APORTE MIN</p> <p class="cifra">{{project.aporteMin}} Eth</p></div>
+                  <div class="max"><p class="aporte">APORTE MAX</p> <p class="cifra">{{project.aporteMax}} Eth</p></div>
                 </div>
             </div>
 
@@ -275,5 +305,7 @@
       </div>
   </div>
 </div>
+
+  <!-- <app-modal [NModal]="modals" [Datas]="data"></app-modal> -->
 
 </div>

@@ -1,0 +1,18 @@
+<div class="sinDesplegar contenidoMH" id="contenidoMH"
+
+	[ngStyle]="{animation: (status=='active') ? 'desplegar .3s forwards ease-in' : 'plegar .3s reverse ease-in' }"
+	[ngClass]="(status=='active') ? token.clase : null"
+	>
+	<div class="contenido">
+
+		<p class="conTitu">{{token.title}}</p>
+
+		<div class="contScrollMH">
+			<p class="descrip">{{token.description}}</p>
+			<p class="descrip" *ngIf="token.regla2 != null" class="descrip">{{token.regla2}}</p>
+			<p class="descrip" *ngIf="token.regla3 != null" class="descrip">{{token.regla3}}</p>
+		</div>
+
+	</div>
+
+</div>

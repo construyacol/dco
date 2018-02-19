@@ -49,8 +49,8 @@
 
 .progresLikes{
   width: 100%;
-  height: 2px;
-  background: green;
+  height: 3px;
+  background: #e1e1e1;
   margin-top: 5px;
 }
 .likeDislike{
@@ -152,7 +152,37 @@ margin-left: 5px;
   display: flex;
 align-items: center;
 justify-content: center;
-}
+font-size: 14px !important;
+ }
+ .warningPool{
+   width: 100%;
+   height: auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin:10px 0 !important;
+   animation: warning 5s infinite;
+   cursor:pointer;
+   position: relative;
+ }
+
+
+ @keyframes warning{
+
+   0%{
+     color: yellow;
+   }
+   50%{
+      color: red;
+    }
+    100%{
+       color: yellow;
+     }
+
+ }
+ .noEx{
+   color: #607d8b30;
+ }
 .pooldet{
   top: 0 !important;
 }
@@ -365,6 +395,7 @@ flex-direction: column;
   display: flex;
       margin-bottom: 5px;
       cursor: pointer;
+      position: relative;
 }
 .imgE{
   margin-right: 5px;
@@ -411,8 +442,10 @@ a:link { text-decoration:none; }
 .coinAd, .coinEth{
   width: 100%;
 }
+
 .coinAd{
   display: flex;
+  position: relative;
 }
 .coinAd h3, .coinAd p{
   margin: 0 !important;
@@ -426,6 +459,14 @@ a:link { text-decoration:none; }
   font-size: 12px;
   margin-left: 5px !important;
   margin-right: 5px !important;
+}
+
+.coinAd mat-icon{
+  font-size: 18px;
+  display: flex;
+justify-content: center;
+align-items: flex-end;
+
 }
 .coinEth{
   margin: 0 !important;
@@ -773,3 +814,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9926ae', end
     color: #931DAB;
 
   }
+
+
+      .coloreado{
+        background: red !important;
+      }
+
+
+
+
+.LIKE:hover, .disLIKE:hover{
+  transition: .2s;
+  cursor: pointer;
+  color: #676767;
+}
+
+
+.progresados{
+  transition: .3s;
+  height: 100%;
+  /*width: 20%;*/
+  background: #9926ae;
+}

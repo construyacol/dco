@@ -41,4 +41,12 @@ declare var $:any;
           $('body').css('overflow-y','visible');
         }
       }
+
+      mostrarModal(){
+        // $('#contenedorModal').css('display','initial');
+        $('#modal').css('animation','animationIn .8s forwards');
+        $('#overlay').addClass('active');
+
+      };
+
   }
