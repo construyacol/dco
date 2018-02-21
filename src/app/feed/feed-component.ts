@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 
 // import { MatTableDataSource, MatSort } from '@angular/material';
 // import UserService from '../../user.service';
@@ -15,7 +15,7 @@ import { Component, ViewChild, OnInit} from '@angular/core';
  	 providers: []
  })
 
-export class FeedComponent implements OnInit {
+export class FeedComponent {
   // constructor(private feedService: FeedService){}
 
 }
