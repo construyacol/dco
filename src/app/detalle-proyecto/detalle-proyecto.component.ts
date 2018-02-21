@@ -1,18 +1,16 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
-import { Project, Project2 } from './proyecto.model';
+import { Project } from './proyecto.model';
 import { NgForm } from '@angular/forms';
 import { Update,
          Social,
          Coin,
          Pool,
          Exchange,
-         Subscriptor,
+         // Subscriptor,
         SocialNetwork,
         Multimedia,
         User,
         Membership,
-        Subscription,
-
       } from '../models/modelos.model';
 
 import { Steemit } from '../steemit/steemit.model';
@@ -21,13 +19,7 @@ import FeedService from '../feed/feed.service';
 declare var jQuery:any;
 declare var $:any;
 
-// import FeedService from '../feed/feed.service';
 // import { MatTableDataSource, MatSort } from '@angular/material';
-// import UserService from '../../user.service';
-// import { User } from '../user.model';
-// declare var jQuery:any;
-// declare var $:any;
-
 
 
  @Component({
@@ -51,8 +43,17 @@ likes:boolean;
 disLikes:boolean;
 barLikes:number;
 barLikesProgress:number;
+
 status:string ='actives';
 mostrar:string = '';
+
+diasTotal:number;
+diasTranscu:number;
+hoy:Date = new Date;
+barDiasProgress:number;
+
+suscrito:boolean = false;
+
 
 toggleModalHover(mensaje){
 
@@ -94,8 +95,8 @@ data='22';
 //Ejemplo Modelo Proyecto---------------------------------------------------------------
 
 reaction: Social = new Social(
-  100,
-  40
+  3,
+  2
 );
 
 coinData: Coin = new Coin(
@@ -111,13 +112,16 @@ coinData: Coin = new Coin(
 );
 
 pool: Pool = new Pool(
-  true,
   'mensaje de alerta',
   1,
   4,
-  new Date,
+  30,
   'https://www.primablock.com',
-  new Date
+  new Date(2018,2,17),
+  new Date,
+  43442,
+  true,
+  33523
 );
 
 
@@ -131,9 +135,9 @@ socialNet:SocialNetwork[] =[
   new SocialNetwork ('reddit', 'https://www.reddit.com'),
 ];
 
-subscriptor:Subscriptor[] =[
-  new Subscriptor ('andres@gmail.com'),
-  new Subscriptor ('andres@gmail.com')
+subscriptor:number[] =[
+  22341,
+  231324
 ];
 
 exc:Exchange[] =[
@@ -169,8 +173,8 @@ project: Project = new Project(
   '1',
   'www.websiteProyecto.com',
   'www.LinkWhitePaper.com',
-  new Date,
-  new Date,
+  new Date(2018,0,19),
+  new Date(2018,3,25),
   'Descripción Proyecto',
   'Equipo ',
   'Estado del Producto',
@@ -187,9 +191,9 @@ project: Project = new Project(
 
 
 
-subscrip:Subscription[] =[
-  new Subscription (241235, this.coinData.name),
-  new Subscription (341263, this.coinData.name),
+subscrip:number[] =[
+  34423,
+  34423,
 ];
 
 likeProjects: number[] = [
@@ -209,6 +213,8 @@ membership: Membership = new Membership(
 usuario: User = new User(
   2231254,
   'Andreas Araveug',
+  'andreasarav@gmail.com',
+  'asdd1234d',
   'vip',
   this.subscrip,
   this.likeProjects,
@@ -229,45 +235,45 @@ faqP:string = 'pool';
 
 
 
-project2: Project2 = new Project2(
-    '3556',
-    'BoonTech',
-    new Date,
-    'BNC',
-    '10 millones',
-    '100 millones',
-    '05 millones',
-    '30%',
-    '50 Eth',
-    '0.2 Eth',
-    'http://www.facebook.com',
-    'whitepaper',
-    'exchange',
-    '100',
-    '10',
-    '10',
-    '10',
-    '10',
-    new Date,
-    new Date,
-    true,
-    `ICO de Data tipo DataWallet, Datum, esta tiene la diferencia que es la primera ICO sobre la Blockchain de EOS, y parte de YC, - La aplicación EOS sería favorable para la comunidad EOS; EOS actualmente en el límite del mercado n.°10
-- Los corredores de datos ganan mucho dinero. En 2012, se informó que Acxiom había ganado $ 1,13 mil millones, ganando una ganancia de $ 77.26 millones.
-- Los piratas informáticos violaron los sistemas de Equifax y robaron datos de identificación personal de más de 140 millones de estadounidenses.
-`,
-    `- Antecedentes del equipo de YC Alumni; YC lote 2015;
-- Asesor Dino Amaral - Ph.D. Criptografía 2008-2013 en Brasil
-- Jason Hamlin, 4 años en AC Nielson como gerente sénior (una compañía global de información, datos y medición con ingresos de $ 6.2 mil millones en 2015)
-`,
-    `- Carpeta INSTAR construida para pruebas beta
-- La implementación beta está en curso con Gambeal (aplicación del cofundador)
-`,
-    `1. En conversaciones con empresas de seguro, compañías de nómina
-2. Asociaciones confirmadas con Quanstamp, Partisia, Mobius ($ 80M cap)
-    - Proporcionar auditoría QSP para el protocolo de investigación de mercado de EOS Blockchain
-    - Asociación con Partisia en Computación segura multipartita. El intercambio seguro de Partisia fue la primera aplicación a gran escala y el uso comercial de SMC en el mundo. https://partisia.com/mpc-goes-live/; Tecnología patentada
-`,'0x72c9f1BBCba8a4a0d6460ff1828d0abd2cF455'
-);
+// project2: Project2 = new Project2(
+//     '3556',
+//     'BoonTech',
+//     new Date,
+//     'BNC',
+//     '10 millones',
+//     '100 millones',
+//     '05 millones',
+//     '30%',
+//     '50 Eth',
+//     '0.2 Eth',
+//     'http://www.facebook.com',
+//     'whitepaper',
+//     'exchange',
+//     '100',
+//     '10',
+//     '10',
+//     '10',
+//     '10',
+//     new Date,
+//     new Date,
+//     true,
+//     `ICO de Data tipo DataWallet, Datum, esta tiene la diferencia que es la primera ICO sobre la Blockchain de EOS, y parte de YC, - La aplicación EOS sería favorable para la comunidad EOS; EOS actualmente en el límite del mercado n.°10
+// - Los corredores de datos ganan mucho dinero. En 2012, se informó que Acxiom había ganado $ 1,13 mil millones, ganando una ganancia de $ 77.26 millones.
+// - Los piratas informáticos violaron los sistemas de Equifax y robaron datos de identificación personal de más de 140 millones de estadounidenses.
+// `,
+//     `- Antecedentes del equipo de YC Alumni; YC lote 2015;
+// - Asesor Dino Amaral - Ph.D. Criptografía 2008-2013 en Brasil
+// - Jason Hamlin, 4 años en AC Nielson como gerente sénior (una compañía global de información, datos y medición con ingresos de $ 6.2 mil millones en 2015)
+// `,
+//     `- Carpeta INSTAR construida para pruebas beta
+// - La implementación beta está en curso con Gambeal (aplicación del cofundador)
+// `,
+//     `1. En conversaciones con empresas de seguro, compañías de nómina
+// 2. Asociaciones confirmadas con Quanstamp, Partisia, Mobius ($ 80M cap)
+//     - Proporcionar auditoría QSP para el protocolo de investigación de mercado de EOS Blockchain
+//     - Asociación con Partisia en Computación segura multipartita. El intercambio seguro de Partisia fue la primera aplicación a gran escala y el uso comercial de SMC en el mundo. https://partisia.com/mpc-goes-live/; Tecnología patentada
+// `,'0x72c9f1BBCba8a4a0d6460ff1828d0abd2cF455'
+// );
 
 // projects:Project[] = new Array(10).fill(this.project); //users es un array del modelo User
 
@@ -315,19 +321,42 @@ quitardisLike(){
   this.usuario.disLikeProjects.splice(this.index,1)
   this.project.social.dislikes-=1;
   this.upLikeBar();
-
   return this.disLikes=false;
 };
 
 upLikeBar(){
   //sacamos porcentaje equivalente al fill de la barra de likes
   this.barLikes = this.project.social.likes + this.project.social.dislikes;
-  console.log(`Total reactions ${this.barLikes}`);
+  //redondear a entero el resultado con la función Math.round
   this.barLikesProgress = Math.round((this.project.social.likes*100)/this.barLikes);
-  // Math.round(this.barLikesProgress) //redondear a entero el resultado
-  console.log(`Barra de progreso en ${this.barLikesProgress}%`);
   $('.progresados').css('width',`${this.barLikesProgress}%`);
 };
+
+dateProgressBar(){
+  // this.hoy = new Date;
+  let today = this.hoy.getTime();
+  let inicia = this.project.dateStart.getTime();
+  let termina = this.project.dateEnd.getTime();
+
+
+  var diff = termina - inicia;
+  var diff2 = today - inicia;
+
+  this.diasTotal = Math.round(diff/(1000*60*60*24));
+  // console.log(this.diasTotal);
+  this.diasTranscu = Math.round(diff2/(1000*60*60*24));
+
+
+
+  this.barDiasProgress =  Math.round((this.diasTranscu*100)/this.diasTotal);
+  $('.progresado').css('width',`${this.barDiasProgress}%`);
+
+  // return console.log(this.barDiasProgress);
+
+
+  // return console.log(`Inicia: ${inicia} y termina ${termina}`);
+};
+
 
 like(){
   // console.log(this.findProject());
@@ -355,9 +384,58 @@ return this.quitardisLike();
 }
 
 
+subscriProject(){
+  return this.usuario.subscriptions.find(proyecto => proyecto === this.project._id);
+}
+
+subscribir(){
+  console.log(this.usuario);
+  console.log(this.subscriProject());
+  if(!this.subscriProject()){//si no estas subscrito al proyecto, entonces lo suscribe
+    this.project.subscriptor.push(this.usuario._id);
+    this.usuario.subscriptions.push(this.project._id);
+    return this.suscrito = true;
+  }
+
+
+  let inds = this.usuario.subscriptions.indexOf(this.project._id);
+  this.usuario.subscriptions.splice(inds,1)
+  return this.suscrito = false;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   ngOnInit(){
 
+    $.getScript("../../assets/slidejs/slide.js");
+    console.log('LA PISCINA FINALIZA EN : -----------------------------------');
+    console.log(this.project.pool.endDate.getDate());
+    console.log(this.project.pool.endDate.getMonth()+1);
+    console.log(this.project.pool.endDate.getFullYear());
+
     //validamos si el usuario ya le ha dado like al proyectos
+    this.dateProgressBar()
     this.upLikeBar();
     if(this.likeProject()){//si el proyecto tiene like
       this.likes=true;
@@ -375,6 +453,45 @@ return this.quitardisLike();
     console.log(this.modals);
     console.log(this.project);
     console.log(this.usuario);
+
+// CODIGO COUNTDOWN POOL--------------------------------------------------------------------------
+var countDownDate = new Date(this.project.pool.endDate.getFullYear(),this.project.pool.endDate.getMonth(),this.project.pool.endDate.getDate()).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + " : " + hours + " : "
+    + minutes + " : " + seconds + " ";
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "FINALIZADO";
+    }
+}, 1000);
+
+
+
+
+
+
+
+//CODIGO FIXED ELEMENT SCROLL ---------------------------------------------------------------
+
+
     // $('#botonMenu1').css('color','rgb(0, 252, 108)');
     $(window).on("scroll",function(){
     if($(window).scrollTop()>398){

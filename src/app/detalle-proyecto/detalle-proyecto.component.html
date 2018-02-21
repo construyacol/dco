@@ -33,6 +33,16 @@
   </div>
   <div class="video">
     <app-news [project]="project"></app-news>
+    <div id="contenedor-slider" class="contenedor-slider">
+       <div id="slider" class="slider">
+        <section class="slider__section"><img src="http://welltechnically.com/wp-content/uploads/2013/08/android-wallpapers-700x300.jpg" class="slider__img"></section>
+        <section class="slider__section"><img src="http://welltechnically.com/wp-content/uploads/2013/09/android-widescreen-wallpaper-14165-hd-wallpapers-700x300.jpg" class="slider__img"></section>
+        <section class="slider__section"><img src="http://welltechnically.com/wp-content/uploads/2013/09/android-widescreen-wallpaper-14165-hd-wallpapers-700x300.jpg" class="slider__img"></section>
+        <section class="slider__section"><img src="http://youghaltennisclub.ie/wp-content/uploads/2014/06/Tennis-Wallpaper-High-Definition-700x300.jpg" class="slider__img"></section>
+      </div>
+      <div id="btn-prev" class="btn-prev">&#60;</div>
+      <div id="btn-next" class="btn-next">&#62;</div>
+   </div>
   </div>
 
 </div>
@@ -44,7 +54,8 @@
           <p (click)="this.feedService.mostrarModal();">Información {{project.type}}</p>
           <div class="derInfo infoDes">
             <div class="subscribe fuente">
-                <p>Suscribirme</p>
+                <p (click)="subscribir();" *ngIf="suscrito == false">Suscribirme</p>
+                <p class="textSb" (click)="subscribir();" *ngIf="suscrito == true"> <i class="material-icons">done</i>Suscrito</p>
             </div>
 
           </div>
@@ -117,7 +128,7 @@
               </div>
             </div>
             <div class="progresLikes">
-              <div class="progresados" style="width:`${barLikesProgress}`%;"></div>
+              <div class="progresados" ></div>
             </div>
           </div>
         </div>
@@ -171,10 +182,11 @@
 							</div>
 
 							<div class="tasa cardColorElement" title="50 Millones (17 k Dolares)" uk-tooltip="pos: bottom">
-								15 Días /<span class="alcanzado">30</span>
+								{{diasTranscu}} / <span class="alcanzado"> {{diasTotal}} Días</span>
 							</div>
 
 						</div>
+
 						<div class="contfinal">
 							<i class="material-icons cardColorElement">timer_off</i>
 							<span class="meta">{{project.dateEnd | amLocale:'es' | amDateFormat:'MMMM D'}}</span>
@@ -245,7 +257,7 @@
         </div>
       </div>
 
-      <div *ngIf="project.pool.avaible == true" class="fiz2 fuente panelBack" id="panelFix">
+      <div *ngIf="project.pool.active == true" class="fiz2 fuente panelBack" id="panelFix">
           <div class="barritaPanel">
               <img src="../../assets/poool.png" width="35" height="24.3" class="poolPic" >
               <p class="dataInvest">PISCINA ABIERTA</p>
@@ -253,7 +265,7 @@
           <div class="panelData datP ">
             <div class="contract faqPool">
               <p>Termina en:</p>
-              <p class="contracText countDown">00: 00: 00</p>
+              <p class="contracText countDown" id="demo">00 : 00 : 00</p>
               <div class="poolGuide">
                 <p class="firstPool">¿Primera vez? aprende a </p><p>invertir en piscinas</p><i class="material-icons">arrow_forward</i>
               </div>

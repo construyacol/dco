@@ -16,6 +16,17 @@
   /*background: white;*/
   padding: 55px 10px 20px 10px;
 }
+.textSb{
+  color: green;
+display: flex;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+}
+.textSb i{
+  font-weight: bold;
+  font-size: 20px;
+}
 .CMlikes{
   width: 100%;
   height: 24%;
@@ -786,8 +797,9 @@ mat-expansion-panel-header{
   }
 
   .progresado{
+    transition: .3s;
     border-radius: 3px;
-    width: 50%;
+    width: 0%;
     height: inherit;
     background: rgba(153,38,174,1);
 background: -moz-linear-gradient(left, rgba(153,38,174,1) 0%, rgba(153,38,174,1) 24%, rgba(88,43,138,1) 100%);
@@ -835,4 +847,82 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9926ae', end
   height: 100%;
   /*width: 20%;*/
   background: #9926ae;
+}
+
+
+app-news{
+  position: absolute;
+  top: 50px;
+  opacity: 0.2;
+  z-index: 999;
+}
+
+
+
+
+
+/*Slide styles -------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/** {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background: #EFC076;
+}*/
+
+.contenedor-slider {
+  margin: auto;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  width: 400%;
+}
+
+.slider__section {
+  width: 100%;
+}
+
+.slider__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-prev, .btn-next {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.btn-prev:hover, .btn-next:hover {
+  background: white;
+}
+
+.btn-prev {
+  left: 10px;
+}
+
+.btn-next {
+  right: 10px;
 }

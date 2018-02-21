@@ -9,20 +9,22 @@ export class Update{
 		public datEvent?: Date,
 		public createdAt?: Date,
 		public project?: Project
-
 		){}
 }
 
 //Modelo Piscina
 export class Pool{
 	constructor(
-		public avaible: boolean,
-		public warning: string,
-    public minEth: number,
+		public warning?: string,
+    public minEth?: number,
 		public maxEth?: number,
-		public endPool?: Date,
-		public linkPool?: string,
+		public bono?: number,
+		public link?: string,
+		public endDate?: Date,
 		public createdAt?: Date,
+		public projectId?: number,
+		public active?: boolean,
+		public id?: number,
     public project?: Project
 		){}
 }
@@ -34,7 +36,6 @@ export class Social{
 		public dislikes?: number
 		){}
 }
-
 
 //Modelo Info Moneda
 export class Coin{
@@ -51,14 +52,6 @@ export class Coin{
 		){}
 }
 
-
-//Modelo subscriptor
-export class Subscriptor{
-	constructor(
-    public email?: string,
-		public user?: User
-		){}
-}
 
 //Modelo redes sociales
 export class SocialNetwork{
@@ -93,8 +86,10 @@ export class User{
 	constructor(
 		public _id: number,
 		public name?: string,
+		public email?: string,
+		public password?: string,
 		public userType?: string,
-		public subscriptions?: Subscription[],
+		public subscriptions?: number[],
 		public likeProjects?: number[],
 		public disLikeProjects?: number[],
     public avaible?: boolean, //condicional para habilitar o inhabilitar usuario en plataforma
@@ -107,28 +102,5 @@ export class Membership{
 	constructor(
 		public startDate: Date,
 		public endDate: Date,
-		){}
-}
-
-
-
-// export class UserLike{
-// 	constructor(
-// 		public id_project: number,
-// 		public nameCoin: string,
-// 		){}
-// }
-//
-// export class UserDisLike{
-// 	constructor(
-// 		public id_project: number,
-// 		public nameCoin: string,
-// 		){}
-// }
-
-export class Subscription{
-	constructor(
-		public _id: number,
-		public nameCoin: string,
 		){}
 }
