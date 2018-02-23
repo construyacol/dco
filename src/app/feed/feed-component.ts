@@ -1,10 +1,10 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 
 // import { MatTableDataSource, MatSort } from '@angular/material';
 // import UserService from '../../user.service';
 // import { User } from '../user.model';
-// declare var jQuery:any;
-// declare var $:any;
+declare var jQuery:any;
+declare var $:any;
 
 
 
@@ -15,7 +15,12 @@ import { Component, ViewChild} from '@angular/core';
  	 providers: []
  })
 
-export class FeedComponent {
+export class FeedComponent implements OnInit {
   // constructor(private feedService: FeedService){}
+
+  ngOnInit(){
+    $.getScript("../../assets/slidejs/slide.js");
+  }
+
 
 }

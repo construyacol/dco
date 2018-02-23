@@ -1,4 +1,5 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import { Project } from './proyecto.model';
 import { NgForm } from '@angular/forms';
 import { Update,
@@ -30,7 +31,8 @@ declare var $:any;
  })
 
 export class DetailsComponent implements OnInit {
-  constructor(private feedService: FeedService){}
+  constructor(private feedService: FeedService,
+  public snackBar: MatSnackBar){}
 
 // modal:any = [
 //   {title:'Titulo', description:'descripcion'},
@@ -158,6 +160,7 @@ project: Project = new Project(
   2231,
   'Titulo',
   'ico',
+  'Vip',
   new Date,
   this.pool,
   this.coinData,
@@ -306,6 +309,9 @@ sumarLike(){
   return this.likes=true;
 };
 
+
+
+
 sumarDisLike(){
   this.project.social.dislikes+=1;
   this.usuario.disLikeProjects.push(this.project._id);
@@ -358,6 +364,12 @@ dateProgressBar(){
 };
 
 
+openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
 like(){
   // console.log(this.findProject());
   console.log(this.likes);
@@ -367,6 +379,7 @@ like(){
     if(this.disLikes){
       this.quitardisLike();
     }
+    this.openSnackBar('¡Me gusta este proyecto!','Liked');
     return this.sumarLike();
 }
 // si el proyecto si tiene like, entonces restele 1 like
@@ -394,6 +407,7 @@ subscribir(){
   if(!this.subscriProject()){//si no estas subscrito al proyecto, entonces lo suscribe
     this.project.subscriptor.push(this.usuario._id);
     this.usuario.subscriptions.push(this.project._id);
+    this.openSnackBar('¡En hora buena, recibiras actualizaciones vía e-mail!','Suscrito');
     return this.suscrito = true;
   }
 

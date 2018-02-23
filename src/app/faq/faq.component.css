@@ -9,7 +9,19 @@
   top: 55px;
   /*background: yellow;*/
 }
+mat-panel-title{
+  font-size: 13px !important;
+  /*text-align: center;*/
+  font-weight: bold;
+}
+mat-expansion-panel-header{
+  /*padding: 0 10px !important;*/
+  margin: 10px 0 ;
+}
+mat-expansion-panel{
+  border-radius: 5px;
 
+}
 p{
 line-height: 33px;
 margin: 0;

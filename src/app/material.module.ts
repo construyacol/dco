@@ -14,10 +14,11 @@ import {
   MatTabsModule,
   MatDividerModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 } from "@angular/material";
 
-const modules = [MatDialogModule, MatDividerModule, MatTabsModule, MatInputModule, MatTooltipModule, MatListModule, MatExpansionModule, MatFormFieldModule, MatTableModule, MatIconModule, MatMenuModule, MatToolbarModule, MatSlideToggleModule, MatMenuModule, MatButtonModule, MatCheckboxModule ];
+const modules = [MatSnackBarModule, MatDialogModule, MatDividerModule, MatTabsModule, MatInputModule, MatTooltipModule, MatListModule, MatExpansionModule, MatFormFieldModule, MatTableModule, MatIconModule, MatMenuModule, MatToolbarModule, MatSlideToggleModule, MatMenuModule, MatButtonModule, MatCheckboxModule ];
 
 @NgModule({
   imports: modules,

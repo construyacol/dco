@@ -7,6 +7,7 @@ export class Project{
 		public _id:number,
 		public title: string,
 		public type: string,
+		public target: string,
 		public createdAt?: Date,
 		public pool?: Pool,
 		public coin?:Coin,
