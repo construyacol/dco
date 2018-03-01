@@ -1,4 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule} from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,9 @@ import { DetailsComponent } from './detalle-proyecto/detalle-proyecto.component'
 import { NewsComponent } from './admin/news/news-proyecto.component';
 import { ModalComponent } from './popUp/modal.component';
 import { ModalHoverComponent } from './popupHover/modalH.component';
+import { ModalHoverFeedComponent } from './popupHoverFeed/modalH.component';
+import { AuthComponent } from './auth/auth-component';
+
 
 
 // import { proofComponent } from './prueba/proof-component';
@@ -36,7 +40,10 @@ import { Routing } from './app.routing';
     DetailsComponent,
     NewsComponent,
     ModalComponent,
-    ModalHoverComponent
+    ModalHoverComponent,
+    ModalHoverFeedComponent,
+    AuthComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,6 +52,7 @@ import { Routing } from './app.routing';
     Routing,
     MomentModule,
     FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

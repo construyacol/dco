@@ -34,7 +34,7 @@ faqs:Faq[] = [];
 
 ngOnInit(){
   // alert(this.loading);
-  console.log(this.faqP);
+  // console.log(this.faqP);
 
   this.loading = false;
   // alert(this.loading);

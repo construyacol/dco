@@ -1,0 +1,47 @@
+<div class="sinDesplegar contenidoMH" id="contenidoMH"
+
+	[ngStyle]="{animation: (status=='active') ? 'desplegar .3s forwards ' : 'plegar .2s forwards ease-in' }"
+	[ngClass]="(status=='active') ? token.clase : null"
+	>
+
+	<div class="contenido" [ngStyle]="{animation: (status=='active') ? 'conteShow .3s forwards ease-in' : 'conteHide .2s forwards ease-in' }">
+		<mat-icon class="cerralo" (click)="cerrar(); onClick();" >close</mat-icon>
+
+		<p class="conTitu"><img src="../../assets/poool.png" width="30" height="20"> PISCINA ABIERTA</p>
+
+		<div class="poolData">
+			{{dataPool}}
+		</div>
+
+		<p class="conTitu"><img src="../../assets/mundo.png" width="20" height="20"> NOVEDADES </p>
+
+
+		<div class="contScrollMH">
+
+				<mat-accordion>
+
+					<!-- <mat-expansion-panel  [expanded]="step === 1" *ngFor="let faq of faqs" > -->
+					<mat-expansion-panel *ngFor="let token of token" >
+
+						<mat-expansion-panel-header>
+							<mat-panel-title class="contItemsu">
+								{{token.title}}
+							</mat-panel-title>
+						</mat-expansion-panel-header>
+
+				<!-- //contenido panel de expansióna -->
+				<div class="contItemsu">
+					<div class="itemUser2">{{token.description}}</div>
+				</div>
+
+
+
+					</mat-expansion-panel>
+
+				</mat-accordion>
+
+		</div>
+
+	</div>
+
+</div>

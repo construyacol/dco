@@ -1,27 +1,22 @@
-<div class="outleet" >
+<div class="outleet">
 
 <div class="feedContent">
   <mat-tab-group class="demo-tab-group">
   	<mat-tab label="Todo">
   		<div class="demo-tab-content">
-        <app-lista-publi></app-lista-publi>
+        <app-lista-publi [alimentadorFeed]="alimentadorFeed"></app-lista-publi>
 
   		</div>
   	</mat-tab>
 
-  	<mat-tab label="Pre & Ico's">
-  	 <div class="demo-tab-content">
-       <app-lista-publi></app-lista-publi>
-  		</div>
-  	</mat-tab>
   	<mat-tab label="Piscinas">
       <div class="demo-tab-content">
-        <app-lista-publi></app-lista-publi>
+        <!-- <app-lista-publi></app-lista-publi> -->
    		</div>
   	</mat-tab>
   	<mat-tab label="Calendario VIP">
       <div class="demo-tab-content">
-        <app-lista-publi></app-lista-publi>
+        <!-- <app-lista-publi></app-lista-publi> -->
    		</div>
   	</mat-tab>
   </mat-tab-group>
@@ -41,7 +36,7 @@
   </div>
 
   <div class="ctaCont" [routerLink]="['/detail']" (click)="this.feedService.escondeScroll(false);">
-    <div class="ctA fuente" >
+    <div class="ctA fuente degradadoBack" >
       Quiero ser VIP
     </div>
   </div>

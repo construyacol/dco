@@ -19,6 +19,6 @@ ngOnInit(){
 // console.log(this.Datas);
 // console.log(this.token);
 }
-
+ 
 
 }

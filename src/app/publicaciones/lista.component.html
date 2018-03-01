@@ -1,23 +1,27 @@
 
 
+<div class="repartidor" *ngFor="let item of alimentadorFeed">
 
-			<div class="carta fuente" id="carta" >
+			<div class="carta fuente" id="carta"  *ngIf="item.typeRelease == 'project'" >
 				<div class="infoProject">
 					<div class="cnombreProyecto">
-						<div class="nombreProyecto">Nombre Proyecto Moneda</div>
+						<div class="nombreProyecto">{{item.coin.name}}</div>
 						<div class="icons">
-							<img src="../../assets/pool.png" width="35">
-							<i class="material-icons alerta">error_outline</i>
+							<img *ngIf="item.pool == true" src="../../assets/pool.png" width="30">
+							<i (mouseenter)="toggleModalHover(item._id)"  class="material-icons alerta">error_outline</i>
+
+							<app-modalHF class="appM" id="appM" *ngIf="mostrar === item._id"  (notify)="onNotifyClicked($event)"  [status]="status" [token]="news" [dataPool]="poolData"></app-modalHF>
+
 						</div>
 					</div>
 					<div class="cutilidad">
             <div class="utilidad">
 
-						<div class="rentabilidad"><p class="tituloc">Hard cap</p><p class="rent">10M </p></div>
+						<div class="rentabilidad" ><p class="tituloc">Hard cap</p><p class="rent">{{item.coin.hardCap}}M </p></div>
 
-						<div class="plusvalia"><p class="tituloc">Precio compra</p> <p class="rent">4cts</p></div>
-						<div class="plusvalia"><p class="tituloc">Bono</p> <p class="rent">+20%</p></div>
-						<div class="plusvalia"><p class="tituloc">Aporte min ETH</p> <p class="rent">0.2</p></div>
+						<div class="plusvalia"><p class="tituloc">Precio compra</p> <p class="rent">{{item.coin.priceUsd}}cts</p></div>
+						<div class="plusvalia" *ngIf="item.coin.Bono"><p class="tituloc">Bono</p> <p class="rent">+{{item.coin.Bono}}%</p></div>
+						<div class="plusvalia" *ngIf="item.coin.minEth"><p class="tituloc">Aporte min ETH</p> <p class="rent">{{item.coin.minEth}}</p></div>
 
 						<!-- <div class="plusvalia"><p class="tituloc">RETORNO</p> <p class="plus">24<p id="mes" class="tituloc">MESES</p></p></div> -->
 
@@ -26,7 +30,7 @@
 					<div class="cprogreso">
 						<div class="contfinal">
 							<i class="material-icons cardColorElement">timer</i>
-							<span class="meta">14 Sep</span>
+							<span class="meta">{{item.dateStart | amLocale:'es' |  amLocal |  amDateFormat:'MMMM D'}}</span>
 						</div>
 
 						<div class="contprogreso">
@@ -35,17 +39,17 @@
 						  </div>
 
 							<div class="progreso">
-								<div class="progresado"></div>
+								<div class="progresado" [ngStyle]="{'width':getBarProgress(item.barDiasProgress)}"></div>
 							</div>
 
 							<div class="tasa cardColorElement" title="50 Millones (17 k Dolares)" uk-tooltip="pos: bottom">
-								15 Días /<span class="alcanzado">30</span>
+								{{item.diasTranscu}} /<span class="alcanzado">{{item.diasTotal}}</span>
 							</div>
 
 						</div>
 						<div class="contfinal">
 							<i class="material-icons cardColorElement">timer_off</i>
-							<span class="meta">15 Oct</span>
+							<span class="meta">{{item.dateEnd | amLocale:'es' |  amLocal |  amDateFormat:'MMMM D'}}</span>
 						</div>
 					 </div>
 
@@ -56,41 +60,34 @@
 				</div>
 
 				<div class="picProject" id="picProject">
+					<div class="contpic degradadoBack">{{item.type}}</div>
+					<div class="contBut contBut2">
+					</div>
 					<div class="contBut">
-						<a id="saberMas" [routerLink]="['/detail']" class="subcm verMas"onclick="sdetalleProyecto();" >Quiero saber más</a>
+						<a id="saberMas" [routerLink]="['/detail']" class="subcm verMas" >Quiero saber más</a>
 					</div>
 
 
-					  <div id="contenedor-slider" class="contenedor-slider">
-
-					 <div id="slider" class="slider">
-						 <section class="slider__section"><img src="http://welltechnically.com/wp-content/uploads/2013/08/android-wallpapers-700x300.jpg" class="slider__img"></section>
-						 <section class="slider__section"><img src="http://welltechnically.com/wp-content/uploads/2013/09/android-widescreen-wallpaper-14165-hd-wallpapers-700x300.jpg" class="slider__img"></section>
-						 <section class="slider__section"><img src="http://welltechnically.com/wp-content/uploads/2013/09/android-widescreen-wallpaper-14165-hd-wallpapers-700x300.jpg" class="slider__img"></section>
-						 <section class="slider__section"><img src="http://youghaltennisclub.ie/wp-content/uploads/2014/06/Tennis-Wallpaper-High-Definition-700x300.jpg" class="slider__img"></section>
-
-					  </div>
-					  <div id="btn-prev" class="btn-prev">&#60;</div>
-					  <div id="btn-next" class="btn-next">&#62;</div>
-
-
-
-				<div class="contpic">
-
-				<!-- <div id="fecha" class="uk-grid-small uk-child-width-auto" uk-grid uk-countdown="date: 2017-08-06T18:58:50+00:00" title="la oportunidad finaliza en: " uk-tooltip="pos: top"> -->
-
-					<!-- </div> -->
-
-					<!-- <div class="controles"></div> -->
-
-
-				</div>
-
-
-
+				<div id="contenedor-slider" class="contenedor-slider">
+					<!-- <iframe width="100%" height="100%" src="{{item.video}}" frameborder="0" allow=" encrypted-media" allowfullscreen></iframe> -->
+					<!-- <iframe id="player" type="text/html" width="100%" height="100%"  [src]="item.video"  frameborder="0"></iframe> -->
 				</div>
 
 
 
 				</div>
 			</div>
+
+
+			<div class="carta fuente" id="carta"  *ngIf="item.typeRelease == 'ad'" >
+
+				<div class="">
+
+				</div>
+
+			</div>
+
+
+
+
+</div>

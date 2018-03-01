@@ -45,6 +45,7 @@ likes:boolean;
 disLikes:boolean;
 barLikes:number;
 barLikesProgress:number;
+x:any;
 
 status:string ='actives';
 mostrar:string = '';
@@ -128,8 +129,10 @@ pool: Pool = new Pool(
 
 
 multimedia:Multimedia[] =[
-  new Multimedia ('Descripción video', 'https://www.youtube.com'),
-  new Multimedia ('Descripción video', 'https://www.youtube.com'),
+  new Multimedia ('imagen', 'http://welltechnically.com/wp-content/uploads/2013/09/android-widescreen-wallpaper-14165-hd-wallpapers-700x300.jpg'),
+  new Multimedia ('imagen', 'http://youghaltennisclub.ie/wp-content/uploads/2014/06/Tennis-Wallpaper-High-Definition-700x300.jpg'),
+  new Multimedia ('imagen', 'http://youghaltennisclub.ie/wp-content/uploads/2014/06/Tennis-Wallpaper-High-Definition-700x300.jpg'),
+  new Multimedia ('imagen', 'http://youghaltennisclub.ie/wp-content/uploads/2014/06/Tennis-Wallpaper-High-Definition-700x300.jpg'),
 ];
 
 socialNet:SocialNetwork[] =[
@@ -429,17 +432,6 @@ subscribir(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   ngOnInit(){
 
     $.getScript("../../assets/slidejs/slide.js");
@@ -472,7 +464,8 @@ subscribir(){
 var countDownDate = new Date(this.project.pool.endDate.getFullYear(),this.project.pool.endDate.getMonth(),this.project.pool.endDate.getDate()).getTime();
 
 // Update the count down every 1 second
-var x = setInterval(function() {
+this.x = setInterval(function() {
+
 
     // Get todays date and time
     var now = new Date().getTime();
@@ -492,7 +485,7 @@ var x = setInterval(function() {
 
     // If the count down is over, write some text
     if (distance < 0) {
-        clearInterval(x);
+        clearInterval(this.x);
         document.getElementById("demo").innerHTML = "FINALIZADO";
     }
 }, 1000);

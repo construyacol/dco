@@ -1,0 +1,202 @@
+.contenidoMH{
+  width: 100%;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contenido{
+  width: 100%;
+  height: 100%;
+}
+.itemUser2{
+text-align: left;
+}
+mat-expansion-panel{
+  margin: 10px 0 !important;
+  border-radius: 5px;
+}
+.conTitu{
+  margin: 7px 0 !important;
+  text-align: center;
+  font-size: 13px;
+  color: yellow;
+  /*background: #394753;*/
+  /*margin: 0 !important;*/
+  margin: 15px 0 !important;
+  display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.descrip{
+  height: auto;
+  width: 100%;;
+  text-align: left;
+  margin: 0 0 10px 0 !important;
+}
+
+.contScrollMH{
+  overflow-y: scroll;
+  overflow-x:hidden;
+  font-size: 12px;
+  /*height: calc(100% - 61px);*/
+  height: 145px;
+  /*border: 1px solid #354651;*/
+  padding: 7px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  text-align: center;
+  background: #222D33;
+}
+
+.contScrollMH::-webkit-scrollbar {
+  width: 7px;
+}
+.contScrollMH::-webkit-scrollbar-thumb {
+  background: #e8ebf2;
+}
+  .sinDesplegar{
+    opacity: 0;
+    /*border: 1px solid #354651;*/
+    /*width: 1px;*/
+    transform-origin: center top;
+    left: 0;
+    /*transform: scale(0,0);*/
+    height: 320px;
+    background: #2D3942;
+    position: absolute;
+    top: 20px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    /*left: -55%;*/
+    border-radius: 3px;
+    transition: .3s ease-in;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.22);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.22);
+    /*animation: desplegar .5s forwards ease-in;*/
+  }
+
+  .desplegado{
+    /*height: 160px;*/
+    opacity: 1;
+  }
+
+
+
+
+  /*animaciones modal hover desplegable*/
+
+  @keyframes desplegar{
+
+    0%{
+      display: initial;
+      visibility: visible;
+      opacity: 0;
+      transform: scale(0,0);
+
+    }
+
+    60%{
+      opacity: 1;
+      transform: scale(1.1,1.1);
+
+    }
+
+     100%{
+       transform: scale(1,1);
+       opacity: 1;
+      }
+
+  }
+
+
+  @keyframes plegar{
+
+    0%{
+      opacity: 0;
+     }
+
+    50%{
+      opacity: 0;
+    }
+
+      100%{
+        opacity: 0;
+        /*height: 100px;*/
+        display: none;
+        visibility: hidden;
+      }
+  }
+
+  @keyframes conteShow{
+
+
+    0%{
+      /*transform: translateY(-10px);*/
+      opacity: 0;
+    }
+    40%{
+        /*transform: translateY(-17px);*/
+        opacity: 0;
+    }
+    100%{
+        /*transform: translateY(0px);*/
+        opacity: 1;
+    }
+
+  }
+  @keyframes conteHide{
+
+
+    0%{
+      opacity: 1;
+    }
+
+    100%{
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+  }
+
+
+  .Exch{
+    width: 180px;
+  }
+
+  .Warning{
+    width: calc(100% - 20px);
+    left: 0 ;
+    color: black !important;
+  }
+  .poolData{
+    width: 100%;
+    height: 40px !important;
+    padding: 7px 0;
+    background: #222D33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: yellow;
+  }
+  .poolIn{
+  width: 100%;
+  height: 100%;
+
+  }
+
+  .cerralo{
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+        margin-right: 7px;
+        color: yellow;
+  }
+  img{
+    margin-right: 10px;
+  }

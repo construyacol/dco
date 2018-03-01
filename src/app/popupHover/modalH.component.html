@@ -1,9 +1,9 @@
 <div class="sinDesplegar contenidoMH" id="contenidoMH"
 
-	[ngStyle]="{animation: (status=='active') ? 'desplegar .3s forwards ease-in' : 'plegar .3s reverse ease-in' }"
+	[ngStyle]="{animation: (status=='active') ? 'desplegar .2s forwards ease-in' : 'plegar .2s forwards' }"
 	[ngClass]="(status=='active') ? token.clase : null"
 	>
-	<div class="contenido">
+	<div class="contenido"	[ngStyle]="{animation: (status=='active') ? 'conteShow .3s forwards ease-in' : 'conteHide .2s forwards ease-in' }">
 
 		<p class="conTitu">{{token.title}}</p>
 

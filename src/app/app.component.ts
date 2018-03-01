@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   ngOnInit(){
+    
     // $('body').css('overflow-y','hidden');
     // $('#botonMenu1').css('color','rgb(0, 252, 108)');
   }
