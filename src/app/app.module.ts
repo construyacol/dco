@@ -2,7 +2,7 @@ import { BrowserModule} from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -51,7 +51,8 @@ import { Routing } from './app.routing';
     materialModule,
     Routing,
     MomentModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

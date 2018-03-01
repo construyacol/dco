@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // import { MatTableDataSource, MatSort } from '@angular/material';
 // import { Faq } from './faq.model';
@@ -26,6 +26,23 @@ export class AuthComponent implements OnInit  {
 
     ngOnInit(){
 
+      this.signinForm = new FormGroup({
+        email:new FormControl(null, [
+          Validators.required, //primera validación es que sea requerido
+          Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        ]),
+        password: new FormControl(null, Validators.required)
+      });
+    }
+
+    onSubmit(){
+      if(!this.signinForm.valid){
+         const { email, password } = this.signinForm.value;
+
+         const user = [{mail:email, pass:password}];
+         console.log(user);
+
+      };
     }
 
 
